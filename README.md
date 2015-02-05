@@ -1,2 +1,3 @@
 # pga309-blutooth-android-tensometer
-This is my bachelor project. It's purpose is to measure tension using tensometers and pga309 and then send data over bluetooth to the android phone and display it in graphs there.
+Bachelor project.
+The purpose of this project is to measure tensions with use of tensometers and pga309 in the sensor bridge configuration. Data will be sent to the android phone (which will plot it) over Bluetooth. All of the components will be connected to the Funduino Mega 2560 R3 for ease of development. 

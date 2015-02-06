@@ -1,14 +1,11 @@
 #include <Wire.h> 
 
 #define chip 0x50
- 
-void loop(){}
- 
+
 void writeEEPROM(int deviceaddress, unsigned int eeaddress, byte data ) 
 {
   Wire.beginTransmission(deviceaddress);
-  Wire.write((int)(eeaddress >> 8));   // MSB
-  Wire.write((int)(eeaddress & 0xFF)); // LSB
+  Wire.write(eeaddress);
   Wire.write(data);
   Wire.endTransmission();
  
@@ -17,18 +14,13 @@ void writeEEPROM(int deviceaddress, unsigned int eeaddress, byte data )
  
 byte readEEPROM(int deviceaddress, unsigned int eeaddress ) 
 {
-  byte rdata = 0xFF;
- 
+  byte rdata = 0xFF; 
   Wire.beginTransmission(deviceaddress);
-  Wire.write((int)(eeaddress >> 8));   // MSB
-  Wire.write((int)(eeaddress & 0xFF)); // LSB
+  Wire.write(eeaddress >> 8);  
   Wire.endTransmission();
- 
-  Wire.requestFrom(deviceaddress,1);
- 
+   Wire.requestFrom(deviceaddress,1); 
   if (Wire.available()) rdata = Wire.read();
- 
-  return rdata;
+   return rdata;
 }
 
 void setup(void)
@@ -36,8 +28,11 @@ void setup(void)
   Serial.begin(9600);
   Wire.begin();  
  
-  unsigned int address = 0;
+  unsigned int address = 1;
  
-  writeEEPROM(chip, address, 123);
+  writeEEPROM(0x50, address, 13);
+  delay(5);
   Serial.print(readEEPROM(chip, address), DEC);
 }
+
+void loop(){}

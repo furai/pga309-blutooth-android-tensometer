@@ -1,0 +1,6 @@
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\classes\debug
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-e8309c8ff776674e21a9bf56e3e68c3411edaefd.jar
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-2992f96d215beb61ba0f1a9957d83fbda4d66e61.jar
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-09a541d525ed89a31b6bd6969b60e20ae6e8e00a.jar
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-d1b5063e5b4147de3f132ae014e6837409ef736a.jar
+E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-49a529327b0c9a1a62fe6553dcbee72a7022a1c1.jar

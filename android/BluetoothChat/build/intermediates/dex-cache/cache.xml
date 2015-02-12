@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-d1b5063e5b4147de3f132ae014e6837409ef736a.jar" />
+    </item>
+    <item
+        jar="E:\Tools\android-sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-e8309c8ff776674e21a9bf56e3e68c3411edaefd.jar" />
+    </item>
+    <item
+        jar="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-49a529327b0c9a1a62fe6553dcbee72a7022a1c1.jar" />
+    </item>
+    <item
+        jar="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2e8c06a7aad26ba8d2d5cab8134556594fe36856">
+        <dex dex="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-09a541d525ed89a31b6bd6969b60e20ae6e8e00a.jar" />
+    </item>
+    <item
+        jar="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="E:\Source\Bachelor\android\BluetoothChat\Application\build\intermediates\pre-dexed\debug\classes-2992f96d215beb61ba0f1a9957d83fbda4d66e61.jar" />
+    </item>
+
+</items>

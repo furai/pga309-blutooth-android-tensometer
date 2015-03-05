@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include <PGA309.h>
 #define PGA309Addr 0x40
 
 int testPin = 52;

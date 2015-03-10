@@ -6,9 +6,10 @@
 #ifndef PGA309_h
 #define PGA309_h
 
-#define testPin 0x34
+#define TESTPIN 0x34
+#define ARRAY_SIZE 2
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 class PGA309
 {
@@ -22,6 +23,7 @@ class PGA309
 	private:
 		int _address;
 		bool testPinEnabled;
+		byte recData[ARRAY_SIZE];
 };
 
 #endif

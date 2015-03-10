@@ -3,8 +3,25 @@
 	Created by Lucas Grzegorczyk, 05.03.2015
 */
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "PGA309.h"
+
+PGA309::PGA309(int address){
+	_address = address;
+	testPinEnabled = false;
+	recData[0] = 0;
+	recData[1] = 0;
+}
+
+void PGA309::enableTestPin(){
+	if (!testPinEnabled){
+		pinMode(testPin, OUTPUT);
+	}
+}
+
+void PGA309::disableTestPin(){
+
+}
 
 /*	Function: writePGA309Register
 		Writes 2 bytes of data to PGA309 register.

@@ -1,9 +1,10 @@
 #include <Wire.h>
-#include <PGA309.h>
-#define PGA309Addr 0x40
+#include "PGA309.h"
+
+#define PGA309ADDR 0x40
 
 int testPin = 52;
-byte recData[2];
+
 
 
 void setup() {

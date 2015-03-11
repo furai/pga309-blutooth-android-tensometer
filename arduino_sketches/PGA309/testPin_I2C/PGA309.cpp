@@ -53,7 +53,7 @@ void PGA309::disableTestPin(){
 
 /*	
 	Function: writePGA309Register
-		Writes 2 bytes of data to PGA309 register.
+		Writes 2 bytes of data to PGA309 register LSB first.
 	Parameters:
 		rgstr - register number (int)
 		data - data to be written to the register (int)
@@ -63,8 +63,8 @@ void PGA309::disableTestPin(){
 int PGA309::writePGA309Register(int rgstr,  int data) {
 	Wire.beginTransmission(_address);
 	Wire.write(rgstr);
-	Wire.write(data >> 8);
-	Wire.write(data & 0xFF);
+	Wire.write(data & 0xFF);	//LSB
+	Wire.write(data >> 8);		//MSB
 	return Wire.endTransmission();   
 }
 

@@ -32,7 +32,7 @@ void setup() {
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
 		data = pga.getRecData();
-		for (int i = 0; i < 2; i++){
+		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
 		}
@@ -45,7 +45,7 @@ void setup() {
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
 		data = pga.getRecData();
-		for (int i = 0; i < 2; i++){
+		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
 		}
@@ -58,7 +58,20 @@ void setup() {
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
 		data = pga.getRecData();
-		for (int i = 0; i < 2; i++){
+		for (int i = 1; i >= 0 ; i--){
+			Serial.print(pga.binaryFormat(data[i],8));
+			Serial.print(" ");
+		}
+		Serial.println();
+	}
+	testdata = pga.readPGA309Register(0x08);
+	if (testdata != 0){
+		Serial.print("There was error while reading: ");
+		Serial.println(testdata);
+	} else {
+		Serial.print("Successfully read data from the register. Data: ");
+		data = pga.getRecData();
+		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
 		}

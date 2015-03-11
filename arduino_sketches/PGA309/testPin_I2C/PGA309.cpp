@@ -1,5 +1,5 @@
 /*
-	PGA309.h - Library for communicating with PGA309.
+	PGA309.cpp - Library for communicating with PGA309.
 	Created by Lucas Grzegorczyk, 05.03.2015
 */
 

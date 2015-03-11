@@ -5,7 +5,7 @@
 
 #ifndef ADS1110_h
 #define ADS1110_h
-	
+
 #include <Arduino.h>
 
 class ADS1110
@@ -13,6 +13,9 @@ class ADS1110
 	public:
 		ADS1110(int address);
 		~ADS1110();
+		void readData();
+		void readSettings();
+		void writeSettings();
 	private:
 		ADS1110();
 		int _address;

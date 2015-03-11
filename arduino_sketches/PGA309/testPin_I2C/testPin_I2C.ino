@@ -2,6 +2,7 @@
 #include "PGA309.h"
 
 #define PGA309ADDR 0x40
+#define ADS1110ADDR 0x49
 #define REG3 0x0500
 #define REG4 0xE300
 #define REG6 0x0600

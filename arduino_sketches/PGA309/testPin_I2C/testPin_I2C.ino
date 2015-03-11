@@ -3,7 +3,7 @@
 
 #define PGA309ADDR 0x40
 #define REG3 0x0500
-#define REG4 0x8000
+#define REG4 0xE300
 #define REG6 0x0600
 
 PGA309 pga(PGA309ADDR);

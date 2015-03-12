@@ -10,8 +10,7 @@
 /*
 	Default private constructor.
 */
-ADS1110::ADS1110()
-{
+ADS1110::ADS1110(){
 	recData[0] = 0;
 	recData[1] = 0;
 	recData[2] = 0;
@@ -22,6 +21,13 @@ ADS1110::ADS1110()
 */
 ADS1110::ADS1110(int address):ADS1110::ADS1110(){
 	_address = address;
+}
+
+/*
+	Default destructor.
+*/
+ADS1110::~ADS1110(){
+	//Nothing to destruct.
 }
 
 /*

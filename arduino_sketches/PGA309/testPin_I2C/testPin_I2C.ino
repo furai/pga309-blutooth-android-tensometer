@@ -13,7 +13,7 @@ void ReadFromMultRegisters(PGA309* _pga, int pregToReadFrom[], int size);
 void ReadADSData(ADS1110* _ads, byte data[]);
 
 PGA309 pga(PGA309ADDR);
-ADS1110 ads(ADS1110ADDR);
+// ADS1110 ads(ADS1110ADDR);
 
 int regData[] = {REG3, REG4, REG6};
 int regToWriteTo[] = {0x03, 0x04, 0x06};
@@ -30,11 +30,11 @@ void setup() {
 
 	WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
 	ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
-
+	delay(1000);
 }
 
 void loop() {
-	ReadADSData(&ads, ADSData);
+	//ReadADSData(&ads, ADSData);
 }
 
 //======================================================
@@ -63,7 +63,7 @@ void ReadFromMultRegisters(PGA309* _pga, int pregToReadFrom[], int size){
 		Serial.print("Successfully read data from the register ");
 		Serial.print(pregToReadFrom[i]);
 		Serial.print(". Data: ");
-		pga.getRecData(data);
+		_pga->getRecData(data);
 		for (int i = 1; i >= 0 ; i--){
 			Serial.print(_pga->binaryFormat(data[i],8));
 			Serial.print(" ");
@@ -78,4 +78,5 @@ void ReadADSData(ADS1110* _ads, byte data[]){
 	_ads->read();
 	_ads->getRecData(data);
 	Serial.println((data[0] * 256) + data[1]);
+	delay(200);
 }

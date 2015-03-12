@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include "PGA309.h"
+#include "ADS1110.h"
 
 #define PGA309ADDR 0x40
 #define ADS1110ADDR 0x49
@@ -12,7 +13,7 @@ PGA309 pga(PGA309ADDR);
 void setup() {
 	Serial.begin(9600);
 	Wire.begin();
-	byte* data;
+	byte data[2];
 	
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
@@ -32,7 +33,7 @@ void setup() {
 		Serial.println(testdata);
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
-		data = pga.getRecData();
+		pga.getRecData(data);
 		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
@@ -45,7 +46,7 @@ void setup() {
 		Serial.println(testdata);
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
-		data = pga.getRecData();
+		pga.getRecData(data);
 		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
@@ -58,7 +59,7 @@ void setup() {
 		Serial.println(testdata);
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
-		data = pga.getRecData();
+		pga.getRecData(data);
 		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");
@@ -71,7 +72,7 @@ void setup() {
 		Serial.println(testdata);
 	} else {
 		Serial.print("Successfully read data from the register. Data: ");
-		data = pga.getRecData();
+		pga.getRecData(data);
 		for (int i = 1; i >= 0 ; i--){
 			Serial.print(pga.binaryFormat(data[i],8));
 			Serial.print(" ");

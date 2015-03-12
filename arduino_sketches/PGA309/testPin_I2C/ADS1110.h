@@ -6,6 +6,8 @@
 #ifndef ADS1110_h
 #define ADS1110_h
 
+#define ARRAY_SIZE_ADS
+
 #include <Arduino.h>
 
 class ADS1110
@@ -13,12 +15,13 @@ class ADS1110
 	public:
 		ADS1110(int address);
 		~ADS1110();
-		void readData();
-		void readSettings();
-		void writeSettings();
+		int read();
+		int write(byte data);
+		void getRecData(byte data[]);
 	private:
 		ADS1110();
 		int _address;
+		byte recData[ARRAY_SIZE_ADS];
 };
 
 #endif

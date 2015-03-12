@@ -73,7 +73,6 @@ int PGA309::writePGA309Register(int rgstr,  int data) {
 		Reads 2 bytes of data from PGA309 register and saves it to recData array.
 	Parameters:
 		rgstr - register number (int)
-		precData - pointer for the array of bytes
 	Returns:
 		Integer - when 0 indicates success, otherwise there was error.
 */
@@ -120,10 +119,25 @@ String PGA309::binaryFormat(int v, int numOfPlaces){
 	return str;
 }
 
+
+/*
+	Function: getAddress
+		Get address on which PGA works.
+	Returns:
+		Integer - address of the PGA309
+*/
 int PGA309::getAddress(){
 	return _address;
 }
 
-byte* PGA309::getRecData(){
-	return recData;
+
+/*
+	Function: getRecDeta
+		Gets received data from the PGA 309.
+	Parameters:
+		Array to be modified and filled with data (byte[])
+*/
+void PGA309::getRecData(byte data[]){
+	data[0] = recData[0];
+	data[1] = recData[1];
 }

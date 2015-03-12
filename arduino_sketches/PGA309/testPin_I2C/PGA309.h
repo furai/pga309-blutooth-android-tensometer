@@ -7,7 +7,7 @@
 #define PGA309_h
 
 #define TESTPIN 0x34
-#define ARRAY_SIZE 2
+#define ARRAY_SIZE_PGA 2
 
 #include <Arduino.h>
 
@@ -22,12 +22,12 @@ class PGA309
 		int readPGA309Register(int rgstr);
 		String binaryFormat(int n, int numOfPlaces);
 		int getAddress();
-		byte* getRecData();
+		void getRecData(byte data[]);
 	private:
 		PGA309();
 		int _address;
 		bool testPinEnabled;
-		byte recData[ARRAY_SIZE];
+		byte recData[ARRAY_SIZE_PGA];
 };
 
 #endif

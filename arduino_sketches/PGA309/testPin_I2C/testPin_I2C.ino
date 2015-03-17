@@ -4,8 +4,10 @@
 
 #define PGA309ADDR 0x40
 #define ADS1110ADDR 0x49
+#define REG1 0x3BB5
+#define REG2 0xCD56
 #define REG3 0x0500
-#define REG4 0xE300
+#define REG4 0xE709
 #define REG6 0x0600
 
 void WriteToMultiRegisters(PGA309* _pga, int pregData[], int pregToWriteTo[], int size);
@@ -15,9 +17,9 @@ void ReadADSData(ADS1110* _ads, byte data[]);
 PGA309 pga(PGA309ADDR);
 // ADS1110 ads(ADS1110ADDR);
 
-int regData[] = {REG3, REG4, REG6};
-int regToWriteTo[] = {0x03, 0x04, 0x06};
-int regToReadFrom[] = {0x03, 0x04, 0x06, 0x08};
+int regData[] = {REG1, REG2, REG3, REG4, REG6};
+int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};
+int regToReadFrom[] = {0x01, 0x02, 	0x03, 0x04, 0x06, 0x08};
 byte ADSData[3];
 
 void setup() {

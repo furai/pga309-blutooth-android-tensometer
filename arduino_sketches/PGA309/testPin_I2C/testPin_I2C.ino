@@ -15,6 +15,7 @@ void WriteToMultiRegisters(PGA309* _pga, int pregData[], int pregToWriteTo[], in
 void ReadFromMultRegisters(PGA309* _pga, int pregToReadFrom[], int size);
 void ReadADSData(ADS1110* _ads, byte data[]);
 void ReadErrorREG(PGA309* _pga);
+void printMenu();
 
 PGA309 pga(PGA309ADDR);
 ADS1110 ads(ADS1110ADDR);
@@ -111,4 +112,8 @@ void ReadADSData(ADS1110* _ads, byte data[]){
 	_ads->getRecData(data);
 	Serial.println((data[0] * 256) + data[1]);
 	delay(200);
+}
+
+void printMenu(){
+
 }

@@ -20,7 +20,7 @@ ADS1110::ADS1110(){
 	Overloaded constructor.
 */
 ADS1110::ADS1110(int address):ADS1110::ADS1110(){
-	_address = address;
+	_address = 0x49;
 }
 
 /*
@@ -35,14 +35,14 @@ ADS1110::~ADS1110(){
 		Reads from ADS110 everything available (data + setting register).
 	Parameters:
 		data - data written to register (byte)
-	Retruns:
-		Integer - 0 succesfull write, anything else error.
+	Returns:
+		Integer - 0 successful write, anything else error.
 */
 int ADS1110::read(){
 	int error;
-	Wire.beginTransmission(_address);
-	if((error = Wire.endTransmission()) != 0)
-		return error;
+	//Wire.beginTransmission(_address);
+	//if((error = Wire.endTransmission()) != 0)
+		//return error;
 	Wire.requestFrom(_address, 3);
 	int i = 0;
 	while (Wire.available()){
@@ -53,11 +53,11 @@ int ADS1110::read(){
 
 /*
 	Function: write
-		Writes to ADS1110 intenral register.
+		Writes to ADS1110 internal register.
 	Parameters:
 		data - data written to register (byte)
-	Retruns:
-		Integer - 0 succesfull write, anything else error.
+	Returns:
+		Integer - 0 successful write, anything else error.
 */
 int ADS1110::write(byte data){
 	Wire.beginTransmission(_address);
@@ -67,7 +67,7 @@ int ADS1110::write(byte data){
 
 /*
 	Function: getRecDeta
-		Gets received data from the PGA 309.
+		Gets received data from the ADS.
 	Parameters:
 		Array to be modified and filled with data (byte[])
 */

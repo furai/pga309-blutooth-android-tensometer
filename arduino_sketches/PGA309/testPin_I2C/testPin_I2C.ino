@@ -6,7 +6,7 @@
 
 #define PGA309ADDR 0x40
 #define ADS1110ADDR 0x49
-#define REG1 0x0326
+#define REG1 0x03C6
 #define REG2 0xE77B
 #define REG3 0x0500
 #define REG4 0xE700
@@ -29,16 +29,16 @@ void setup() {
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
 
-	util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
-	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
-	Serial.print("Status of writing to the ADS internal register:");
-	Serial.println(ads.write(ADSREG));
-	delay(1000);
+	// util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
+	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	// Serial.print("Status of writing to the ADS internal register:");
+	// Serial.println(ads.write(ADSREG));
+	// delay(1000);
 
 }
 
 void loop() {
-	util::ReadADSData(&ads, ADSData);
-	util::ReadErrorREG(&pga);
+	// util::ReadADSData(&ads, ADSData);
+	// util::ReadErrorREG(&pga);
 }
 

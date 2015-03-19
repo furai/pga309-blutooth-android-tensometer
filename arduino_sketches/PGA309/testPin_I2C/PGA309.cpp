@@ -22,7 +22,7 @@ PGA309::PGA309(){
 	Overloaded constructor. This one should be uesd.
 */
 PGA309::PGA309(int address):PGA309::PGA309(){
-	_address = address;
+	_addr = address;
 }
 
 /*	
@@ -61,7 +61,7 @@ void PGA309::disableTestPin(){
 		Integer - when different than 0 indicates error.
 */
 int PGA309::writePGA309Register(int rgstr,  int data) {
-	Wire.beginTransmission(_address);
+	Wire.beginTransmission(_addr);
 	Wire.write(rgstr);
 	Wire.write(data & 0xFF);	//LSB
 	Wire.write(data >> 8);		//MSB
@@ -78,11 +78,11 @@ int PGA309::writePGA309Register(int rgstr,  int data) {
 */
 int PGA309::readPGA309Register(int rgstr) {
 	int error;
-	Wire.beginTransmission(_address);
+	Wire.beginTransmission(_addr);
 	Wire.write(rgstr);
 	if((error = Wire.endTransmission()) != 0)
 		return error;
-	Wire.requestFrom(_address, 2);
+	Wire.requestFrom(_addr, 2);
 	int i = 0;
 	while (Wire.available()){
 		recData[i] = Wire.read();
@@ -127,7 +127,7 @@ String PGA309::binaryFormat(int v, int numOfPlaces){
 		Integer - address of the PGA309
 */
 int PGA309::getAddress(){
-	return _address;
+	return _addr;
 }
 
 

@@ -77,6 +77,12 @@ namespace util{
 	}
 
 	void printMenu(){
+		Serial.println("What would you like to do?");
+		Serial.println("1. Enable/disable test pin.");
+		Serial.println("2. Write to PGA309 registers.");
+		Serial.println("3. Write to ADS1110 registers.");
+		Serial.println("4. Continuous read from PGA309 error register.");
+		Serial.println("5. Continuous read from ADS1110.");
 
 	}
 

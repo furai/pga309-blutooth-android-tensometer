@@ -6,7 +6,7 @@
 #ifndef ADS1110_h
 #define ADS1110_h
 
-#define ARRAY_SIZE_ADS
+#define ARRAY_SIZE_ADS 3
 
 #include <Arduino.h>
 

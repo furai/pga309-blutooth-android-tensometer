@@ -83,7 +83,5 @@ namespace util{
 		Serial.println("3. Write to ADS1110 registers.");
 		Serial.println("4. Continuous read from PGA309 error register.");
 		Serial.println("5. Continuous read from ADS1110.");
-
 	}
-
 }	

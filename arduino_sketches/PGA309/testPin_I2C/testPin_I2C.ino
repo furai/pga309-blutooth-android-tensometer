@@ -14,14 +14,14 @@
 #define ADSREG B10001101
 
 PGA309 pga(PGA309ADDR);
-ADS1110 ads(ADS1110ADDR);
+//ADS1110 ads(ADS1110ADDR);
 
 int regData[] = {REG1, REG2, REG3, REG4, REG6};
 int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};
 int regToReadFrom[] = {0x01, 0x02, 0x03, 0x04, 0x06, 0x08};
 byte ADSData[3];
 
-void setup() {
+void setup(){
 	Serial.begin(9600);
 	Wire.begin();
 	
@@ -37,7 +37,8 @@ void setup() {
 
 }
 
-void loop() {
+void loop(){
+	util::printMenu();
 	// util::ReadADSData(&ads, ADSData);
 	// util::ReadErrorREG(&pga);
 }

@@ -25,7 +25,7 @@ class PGA309
 		void getRecData(byte data[]);
 	private:
 		PGA309();
-		int _addr;
+		int _address;
 		bool testPinEnabled;
 		byte recData[ARRAY_SIZE_PGA];
 };

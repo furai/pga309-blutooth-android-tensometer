@@ -38,6 +38,7 @@ EEPROM24C02::~EEPROM24C02(){
 int EEPROM24C02::read(int addr){
 	int error;
 	Wire.beginTransmission(_address);
+	Wire.write(addr);
 	if((error = Wire.endTransmission()) != 0)
 		return error;
 	Wire.requestFrom(_address, 1);

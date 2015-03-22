@@ -31,20 +31,57 @@ void setup(){
 	
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
-
-	eeprom.read(0x00);
+	delay(200);
+	Serial.print("Status of reading from the EEPROM memory address: ");
+	Serial.println(eeprom.read(0x00));
+	delay(5);
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-	eeprom.write(0x00, 0x12);
+	Serial.print("Status of writing to the EEPROM memory address: ");
+	Serial.println(eeprom.write(0x00, 0x09));
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address after writing to it: ");
+	Serial.println(eeprom.read(0x00));
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-	eeprom.read(0x02);
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address: ");
+	Serial.println(eeprom.read(0x05));
+	delay(5);
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-	eeprom.write(0x02, 0x13);
+	Serial.print("Status of writing to the EEPROM memory address: ");
+	Serial.println(eeprom.write(0x05, 0x06));
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address after writing to it: ");
+	Serial.println(eeprom.read(0x05));
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-	eeprom.read(0x01);
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address: ");
+	Serial.println(eeprom.read(0x02));
+	delay(5);
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-	eeprom.write(0x01, 0x14);
+	Serial.print("Status of writing to the EEPROM memory address: ");
+	Serial.println(eeprom.write(0x02, 0x07));
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address after writing to it: ");
+	Serial.println(eeprom.read(0x02));
+	Serial.print("Data: ");
 	Serial.println(eeprom.getRecData());
-
+	Serial.print("Status of reading from the EEPROM memory address: ");
+	Serial.println(eeprom.read(0x00));
+	delay(5);
+	Serial.print("Data: ");
+	Serial.println(eeprom.getRecData());
+	Serial.print("Status of writing to the EEPROM memory address: ");
+	Serial.println(eeprom.write(0x00, 0x0A));
+	delay(5);
+	Serial.print("Status of reading from the EEPROM memory address after writing to it: ");
+	Serial.println(eeprom.read(0x00));
+	Serial.print("Data: ");
+	Serial.println(eeprom.getRecData());
 
 
 	// util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));

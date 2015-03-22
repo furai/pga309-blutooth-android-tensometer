@@ -14,7 +14,7 @@ class EEPROM24C02
 		~EEPROM24C02();
 		int read(int addr);
 		int write(int addr, byte data);
-		int EEPROM24C02::write2bytes(int addr, int data);
+		int write2bytes(int addr, int data);
 		byte getRecData();
 	private:
 		EEPROM24C02();

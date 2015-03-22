@@ -63,6 +63,23 @@ int EEPROM24C02::write(int addr, byte data){
 }
 
 /*
+	Function: write
+		Writes to EEPROM24C02 memory address.
+	Parameters:
+		data - data written to the memory address (byte)
+	Returns:
+		Integer - 0 successful write, anything else error.
+*/
+int EEPROM24C02::write2bytes(int addr, int data){
+	Wire.beginTransmission(_address);
+	Wire.write(addr);
+	Wire.write(data & 0xFF);	//LSB
+	Wire.write(data >> 8);		//MSB
+	return Wire.endTransmission(); 
+}
+
+
+/*
 	Function: getRecDeta
 		Gets received data from the EEPROM24C02.
 	Parameters:

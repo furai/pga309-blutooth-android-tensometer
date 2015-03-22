@@ -5,7 +5,22 @@
 #ifndef EEPROM24C02_h
 #define EEPROM24C02_h
 
-#include 
+#include <Arduino.h>
+
+class EEPROM24C02
+{
+	public:
+		EEPROM24C02(int address);
+		~EEPROM24C02();
+		int read(int addr);
+		int write(int addr, byte data);
+		byte getRecData();
+	private:
+		EEPROM24C02();
+		int _address;
+		byte recData;
+};
+
 
 #endif
 

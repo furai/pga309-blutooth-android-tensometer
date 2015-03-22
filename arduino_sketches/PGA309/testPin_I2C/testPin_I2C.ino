@@ -3,9 +3,11 @@
 #include "PGA309.h"
 #include "ADS1110.h"
 #include "Util.h"
+#include "EEPROM24C02.h"
 
 #define PGA309ADDR 0x40
 #define ADS1110ADDR 0x49
+#define EEPROM24C02ADDR 0x50
 #define REG1 0x03C6
 #define REG2 0xE77B
 #define REG3 0x0500
@@ -15,6 +17,7 @@
 
 PGA309 pga(PGA309ADDR);
 ADS1110 ads(ADS1110ADDR);
+EEPROM24C02 eeprom(EEPROM24C02ADDR);
 
 int regData[] = {REG1, REG2, REG3, REG4, REG6};
 int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};

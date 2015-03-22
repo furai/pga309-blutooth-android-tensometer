@@ -15,7 +15,7 @@ class ADS1110
 	public:
 		ADS1110(int address);
 		~ADS1110();
-		int read();
+		void read();
 		int write(byte data);
 		void getRecData(byte data[]);
 	private:

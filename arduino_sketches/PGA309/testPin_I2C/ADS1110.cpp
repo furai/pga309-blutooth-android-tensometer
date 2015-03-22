@@ -20,7 +20,7 @@ ADS1110::ADS1110(){
 	Overloaded constructor.
 */
 ADS1110::ADS1110(int address):ADS1110::ADS1110(){
-	_address = 0x49;
+	_address = address;
 }
 
 /*
@@ -35,14 +35,8 @@ ADS1110::~ADS1110(){
 		Reads from ADS110 everything available (data + setting register).
 	Parameters:
 		data - data written to register (byte)
-	Returns:
-		Integer - 0 successful write, anything else error.
 */
-int ADS1110::read(){
-	int error;
-	//Wire.beginTransmission(_address);
-	//if((error = Wire.endTransmission()) != 0)
-		//return error;
+void ADS1110::read(){
 	Wire.requestFrom(_address, 3);
 	int i = 0;
 	while (Wire.available()){

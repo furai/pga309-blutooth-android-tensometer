@@ -32,17 +32,32 @@ void setup(){
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
 
-	util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
-	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
-	Serial.print("Status of writing to the ADS internal register:");
-	Serial.println(ads.write(ADSREG));
-	delay(1000);
+	eeprom.read(0x00);
+	Serial.println(eeprom.getRecData());
+	eeprom.write(0x00, 0x12);
+	Serial.println(eeprom.getRecData());
+	eeprom.read(0x02);
+	Serial.println(eeprom.getRecData());
+	eeprom.write(0x02, 0x13);
+	Serial.println(eeprom.getRecData());
+	eeprom.read(0x01);
+	Serial.println(eeprom.getRecData());
+	eeprom.write(0x01, 0x14);
+	Serial.println(eeprom.getRecData());
+
+
+
+	// util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
+	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	// Serial.print("Status of writing to the ADS internal register:");
+	// Serial.println(ads.write(ADSREG));
+	// delay(1000);
 
 }
 
 void loop(){
 	// util::printMenu();
-	util::ReadADSData(&ads, ADSData);
-	util::ReadErrorREG(&pga);
+	// util::ReadADSData(&ads, ADSData);
+	// util::ReadErrorREG(&pga);
 }
 

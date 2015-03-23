@@ -19,7 +19,7 @@ PGA309::PGA309(){
 
 
 /*	
-	Overloaded constructor. This one should be uesd.
+	Overloaded constructor. This one should be used.
 */
 PGA309::PGA309(int address):PGA309::PGA309(){
 	_address = address;
@@ -88,35 +88,6 @@ int PGA309::readPGA309Register(int rgstr) {
 		recData[i] = Wire.read();
 		i++;
 	}
-}
-
-/*	
-	Function: print_binary
-		Prints number in binary format with leading zeros.
-	Parameters:
-		v - number (int)
-		numOfPlaces - number of places to display (int)
-*/
-String PGA309::binaryFormat(int v, int numOfPlaces){
-	int mask=0, n;
-	String str = "";
-
-	for (n=1; n<=numOfPlaces; n++){
-		mask = (mask << 1) | 0x0001;
-	}
-
-	v = v & mask;  
-
-	while(numOfPlaces){
-		if (v & (0x0001 << numOfPlaces-1)){
-			str += '1';
-		} else {
-			str += '0';
-		}
-
-		--numOfPlaces;
-	}
-	return str;
 }
 
 

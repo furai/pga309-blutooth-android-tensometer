@@ -14,6 +14,7 @@ namespace util{
 	void ReadADSData(ADS1110* _ads, byte data[]);
 	void ReadErrorREG(PGA309* _pga);
 	void printMenu();
+	String binaryFormat(int n, int numOfPlaces);
 }
 
 #endif

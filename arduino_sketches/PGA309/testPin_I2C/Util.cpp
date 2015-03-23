@@ -36,7 +36,7 @@ namespace util{
 				Serial.print(". Data: ");
 				_pga->getRecData(data);
 				for (int i = 1; i >= 0 ; i--){
-					Serial.print(_pga->binaryFormat(data[i],8));
+					Serial.print(binaryFormat(data[i],8));
 					Serial.print(" ");
 				}
 				Serial.println();
@@ -61,7 +61,7 @@ namespace util{
 			Serial.print(". Data: ");
 			_pga->getRecData(data);
 			for (int i = 1; i >= 0 ; i--){
-				Serial.print(_pga->binaryFormat(data[i],8));
+				Serial.print(binaryFormat(data[i],8));
 				Serial.print(" ");
 			}
 			Serial.println();
@@ -83,5 +83,34 @@ namespace util{
 		Serial.println("3. Write to ADS1110 registers.");
 		Serial.println("4. Continuous read from PGA309 error register.");
 		Serial.println("5. Continuous read from ADS1110.");
+	}
+
+	/*	
+	Function: binaryFormat
+		Prints number in binary format with leading zeros.
+	Parameters:
+		v - number (int)
+		numOfPlaces - number of places to display (int)
+	*/
+	String binaryFormat(int v, int numOfPlaces){
+		int mask=0, n;
+		String str = "";
+
+		for (n=1; n<=numOfPlaces; n++){
+			mask = (mask << 1) | 0x0001;
+		}
+
+		v = v & mask;  
+
+		while(numOfPlaces){
+			if (v & (0x0001 << numOfPlaces-1)){
+				str += '1';
+			} else {
+				str += '0';
+			}
+
+			--numOfPlaces;
+		}
+		return str;
 	}
 }	

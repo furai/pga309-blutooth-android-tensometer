@@ -20,7 +20,6 @@ class PGA309
 		void disableTestPin();
 		int writePGA309Register(int rgstr,  int data);
 		int readPGA309Register(int rgstr);
-		String binaryFormat(int n, int numOfPlaces);
 		int getAddress();
 		void getRecData(byte data[]);
 	private:

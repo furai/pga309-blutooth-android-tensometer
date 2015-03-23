@@ -7,6 +7,7 @@
 #include <Wire.h>
 #include "PGA309.h"
 #include "ADS1110.h"
+#include "EEPROM24C02.h"
 #include "Util.h"
 
 namespace util{

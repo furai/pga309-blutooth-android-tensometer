@@ -2,8 +2,8 @@
 #include <Arduino.h>
 #include "PGA309.h"
 #include "ADS1110.h"
-#include "Util.h"
 #include "EEPROM24C02.h"
+#include "Util.h"
 
 #define PGA309ADDR 0x40
 #define ADS1110ADDR 0x49

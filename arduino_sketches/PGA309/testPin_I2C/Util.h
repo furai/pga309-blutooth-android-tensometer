@@ -16,6 +16,7 @@ namespace util{
 	void printMenu();
 	String binaryFormat(int n, int numOfPlaces);
 	void WriteToMultiEEPROM(EEPROM24C02* _eeprom, int pmemData[], int pmemToWriteTo[], int size);
+	void ReadFromMultEEPROM(EEPROM24C02* _eeprom, int pmemToReadFrom[], int size);
 }
 
 #endif

@@ -124,4 +124,29 @@ namespace util{
 			delay(5);
 		}
 	}
+
+	void ReadFromMultEEPROM(EEPROM24C02* _eeprom, int pregToReadFrom[], int size){
+		int testdata;
+		byte data[2];
+		for (int i = 0; i < size; i++){
+			testdata = _eeprom->read2bytes(pregToReadFrom[i]);
+			if (testdata != 0){
+				Serial.print("There was error while reading data from register ");
+				Serial.print(pregToReadFrom[i]);
+				Serial.print(": ");
+				Serial.println(testdata);
+			} else {
+				Serial.print("Successfully read data from the register ");
+				Serial.print(pregToReadFrom[i]);
+				Serial.print(". Data: ");
+				_eeprom->getRecData(data);
+				for (int i = 1; i >= 0 ; i--){
+					Serial.print(binaryFormat(data[i],8));
+					Serial.print(" ");
+				}
+				Serial.println();
+			}
+			delay(5);
+		}
+	}
 }	

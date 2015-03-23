@@ -31,9 +31,9 @@ EEPROM24C02::~EEPROM24C02(){
 	Function: read
 		Reads from EEPROM24C02 memory address.
 	Parameters:
-		data - data written to memory (byte)
+		addr - address to start reading from (byte)
 	Returns:
-		Integer - 0 successful write, anything else error.
+		Integer - 0 successful read, anything else error.
 */
 int EEPROM24C02::read(int addr){
 	int error;

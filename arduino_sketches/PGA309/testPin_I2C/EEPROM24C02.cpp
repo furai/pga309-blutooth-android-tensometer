@@ -49,6 +49,28 @@ int EEPROM24C02::read(int addr){
 }
 
 /*
+	Function: read2bytes
+		Reads 2 bytes from EEPROM24C02 memory address.
+	Parameters:
+		addr - address to start reading from (byte)
+	Returns:
+		Integer - 0 successful read, anything else error.
+*/
+int EEPROM24C02::read2bytes(int addr){
+	int error;
+	Wire.beginTransmission(_address);
+	Wire.write(addr);
+	if((error = Wire.endTransmission()) != 0)
+		return error;
+	Wire.requestFrom(_address, 2);
+	int i = 0;
+	while (Wire.available()){
+		recData[i] = Wire.read();
+		i++;
+	}
+}
+
+/*
 	Function: write
 		Writes to EEPROM24C02 memory address.
 	Parameters:

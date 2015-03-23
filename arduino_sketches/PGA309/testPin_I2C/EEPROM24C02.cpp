@@ -10,7 +10,8 @@
 	Default private constructor.
 */
 EEPROM24C02::EEPROM24C02(){
-	recData = 0;
+	recData[0] = 0;
+	recData[1] = 0;
 }
 
 /*
@@ -43,7 +44,7 @@ int EEPROM24C02::read(int addr){
 		return error;
 	Wire.requestFrom(_address, 1);
 	while (Wire.available()){
-		recData = Wire.read();
+		recData[0] = Wire.read();
 	}
 }
 
@@ -82,9 +83,20 @@ int EEPROM24C02::write2bytes(int addr, int data){
 /*
 	Function: getRecDeta
 		Gets received data from the EEPROM24C02.
-	Parameters:
-		Array to be modified and filled with data (byte[])
+	Returns: 
+		byte of data
 */
 byte EEPROM24C02::getRecData(){
-	return recData;
+	return recData[0];
+}
+
+/*
+	Function: getRecDeta
+		Gets received data from the EEPROM24C02.
+	Parameters:
+		Array to write data to (byte)
+*/
+void EEPROM24C02::getRecData(byte data[]){
+	data[0] = recData[0];
+	data[1] = recData[1];
 }

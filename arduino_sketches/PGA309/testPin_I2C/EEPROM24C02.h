@@ -5,6 +5,8 @@
 #ifndef EEPROM24C02_h
 #define EEPROM24C02_h
 
+#define ARRAY_SIZE_EEPROM 2
+
 #include <Arduino.h>
 
 class EEPROM24C02
@@ -13,13 +15,15 @@ class EEPROM24C02
 		EEPROM24C02(int address);
 		~EEPROM24C02();
 		int read(int addr);
+		int read2bytes(int addr);
 		int write(int addr, byte data);
 		int write2bytes(int addr, int data);
 		byte getRecData();
+		void getRecData(byte data[]);
 	private:
 		EEPROM24C02();
 		int _address;
-		byte recData;
+		byte recData[ARRAY_SIZE_EEPROM];
 };
 
 

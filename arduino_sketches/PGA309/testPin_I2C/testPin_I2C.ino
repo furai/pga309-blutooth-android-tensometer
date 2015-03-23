@@ -23,6 +23,8 @@ int regData[] = {REG1, REG2, REG3, REG4, REG6};
 int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};
 int regToReadFrom[] = {0x01, 0x02, 0x03, 0x04, 0x06, 0x08};
 byte ADSData[3];
+int memData[] = {0x5449, 0x0000, 0x0000, REG3, REG4, 0x0000, REG6, (0xFFFF-((0x5449+REG3+REG4+REG6)&0xFFFF))};
+int memToWriteToReadFrom[] = {0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0E};
 
 void setup(){
 	Serial.begin(9600);
@@ -32,12 +34,19 @@ void setup(){
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
 	delay(10);
+	util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	delay(1000);
+	pga.disableTestPin();
+	delay(10);
+	
+
 
 	// util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
-	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
-	// Serial.print("Status of writing to the ADS internal register:");
-	// Serial.println(ads.write(ADSREG));
-	// delay(1000);
+	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	Serial.print("Status of writing to the ADS internal register:");
+	Serial.println(ads.write(ADSREG));
+	delay(1000);
 
 }
 

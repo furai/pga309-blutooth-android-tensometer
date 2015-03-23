@@ -15,6 +15,7 @@ namespace util{
 	void ReadErrorREG(PGA309* _pga);
 	void printMenu();
 	String binaryFormat(int n, int numOfPlaces);
+	void WriteToMultiEEPROM(EEPROM24C02* _eeprom, int pmemData[], int pmemToWriteTo[], int size);
 }
 
 #endif

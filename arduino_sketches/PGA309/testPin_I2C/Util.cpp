@@ -114,4 +114,14 @@ namespace util{
 		}
 		return str;
 	}
+
+	void WriteToMultiEEPROM(EEPROM24C02* _eeprom, int pmemData[], int pmemToWriteTo[], int size){
+		for (int i = 0; i < size; i++){
+			Serial.print("Status of writing to the EEPROM24C02 memory address ");
+			Serial.print(pmemToWriteTo[i]);
+			Serial.print(": ");
+			Serial.println(_eeprom->write2bytes(pmemToWriteTo[i], pmemData[i]));
+			delay(5);
+		}
+	}
 }	

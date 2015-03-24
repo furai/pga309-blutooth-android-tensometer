@@ -20,6 +20,7 @@ class EEPROM24C02
 		int write2bytes(int addr, int data);
 		byte getRecData();
 		void getRecData(byte data[]);
+		void clear();
 	private:
 		EEPROM24C02();
 		int _address;

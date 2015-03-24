@@ -122,3 +122,14 @@ void EEPROM24C02::getRecData(byte data[]){
 	data[0] = recData[0];
 	data[1] = recData[1];
 }
+
+/*
+	Function: clear
+		Clears memory of eeprom.
+*/
+void EEPROM24C02::clear(){
+	for (int i = 0; i < 256; i++){
+		this->write(i, 0x00);
+		delay(5);
+	}
+}

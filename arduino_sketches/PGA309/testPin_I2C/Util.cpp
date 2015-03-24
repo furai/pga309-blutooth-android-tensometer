@@ -131,12 +131,12 @@ namespace util{
 		for (int i = 0; i < size; i++){
 			testdata = _eeprom->read2bytes(pregToReadFrom[i]);
 			if (testdata != 0){
-				Serial.print("There was error while reading data from register ");
+				Serial.print("There was error while reading data from memory address ");
 				Serial.print(pregToReadFrom[i]);
 				Serial.print(": ");
 				Serial.println(testdata);
 			} else {
-				Serial.print("Successfully read data from the register ");
+				Serial.print("Successfully read data from the memory address ");
 				Serial.print(pregToReadFrom[i]);
 				Serial.print(". Data: ");
 				_eeprom->getRecData(data);

@@ -19,9 +19,12 @@ PGA309 pga(PGA309ADDR);
 ADS1110 ads(ADS1110ADDR);
 EEPROM24C02 eeprom(EEPROM24C02ADDR);
 
-int regData[] = {REG1, REG2, REG3, REG4, REG6};
-int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};
+// int regData[] = {REG1, REG2, REG3, REG4, REG6};
+// int regToWriteTo[] = {0x01, 0x02, 0x03, 0x04, 0x06};
 int regToReadFrom[] = {0x01, 0x02, 0x03, 0x04, 0x06, 0x08};
+int regData[] = {REG1, REG2};
+int regToWriteTo[] = {0x01, 0x02};
+// int regToReadFrom[] = {0x01, 0x02};
 byte ADSData[3];
 int memData[] = {0x5449, 0x0000, 0x0000, REG3, REG4, 0x0000, REG6, (0xFFFF-((0x5449+REG3+REG4+REG6)&0xFFFF))};
 int memToWriteToReadFrom[] = {0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0E};
@@ -33,25 +36,26 @@ void setup(){
 	
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
-	delay(10);
-	util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
-	util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	delay(100);
+	//eeprom.clear();
+	// util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	// util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
 	delay(1000);
-	pga.disableTestPin();
-	delay(10);
 	
 
 
-	// util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
-	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	util::WriteToMultiRegisters(&pga, regData, regToWriteTo, (sizeof(regData)/sizeof(int)));
+	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 	Serial.print("Status of writing to the ADS internal register:");
 	Serial.println(ads.write(ADSREG));
-	delay(1000);
-
+	delay(100);
+	pga.disableTestPin();
+	delay(100);
 }
 
 void loop(){
 	// util::printMenu();
-	// util::ReadADSData(&ads, ADSData);
-	// util::ReadErrorREG(&pga);
+	util::ReadADSData(&ads, ADSData);
+	util::ReadErrorREG(&pga);
+	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 }

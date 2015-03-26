@@ -16,7 +16,7 @@ namespace util{
 			Serial.print("Status of writing to the PGA309 internal register ");
 			Serial.print(pregToWriteTo[i]);
 			Serial.print(": ");
-			Serial.println(_pga->writePGA309Register(pregToWriteTo[i], pregData[i]));
+			Serial.println(_pga->write(pregToWriteTo[i], pregData[i]));
 			delay(5);
 		}
 	}

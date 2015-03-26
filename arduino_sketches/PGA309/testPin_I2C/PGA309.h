@@ -18,7 +18,7 @@ class PGA309
 		~PGA309();
 		void enableTestPin();
 		void disableTestPin();
-		int writePGA309Register(int rgstr,  int data);
+		int write(int rgstr,  int data);
 		int readPGA309Register(int rgstr);
 		int getAddress();
 		void getRecData(byte data[]);

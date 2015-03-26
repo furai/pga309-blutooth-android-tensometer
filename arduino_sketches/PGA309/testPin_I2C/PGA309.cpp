@@ -120,5 +120,6 @@ void PGA309::getRecData(byte data[]){
 		byte - temperature read from the reg
 */
 byte readTempADC(){
+	this.read();
 	
 }

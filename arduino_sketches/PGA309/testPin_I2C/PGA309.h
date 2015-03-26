@@ -22,6 +22,7 @@ class PGA309
 		int readPGA309Register(int rgstr);
 		int getAddress();
 		void getRecData(byte data[]);
+		byte readTempADC();
 	private:
 		PGA309();
 		int _address;

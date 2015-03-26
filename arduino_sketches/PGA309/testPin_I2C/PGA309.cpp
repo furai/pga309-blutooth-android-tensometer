@@ -69,14 +69,14 @@ int PGA309::write(int rgstr,  int data) {
 }
 
 /*	
-	Function: readPGA309Register
+	Function: read
 		Reads 2 bytes of data from PGA309 register and saves it to recData array.
 	Parameters:
 		rgstr - register number (int)
 	Returns:
 		Integer - when 0 indicates success, otherwise there was error.
 */
-int PGA309::readPGA309Register(int rgstr) {
+int PGA309::read(int rgstr) {
 	int error;
 	Wire.beginTransmission(_address);
 	Wire.write(rgstr);

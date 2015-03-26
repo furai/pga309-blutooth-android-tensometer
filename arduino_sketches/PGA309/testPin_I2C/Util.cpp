@@ -25,7 +25,7 @@ namespace util{
 		int testdata;
 		byte data[2];
 		for (int i = 0; i < size; i++){
-			testdata = _pga->readPGA309Register(pregToReadFrom[i]);
+			testdata = _pga->read(pregToReadFrom[i]);
 			if (testdata != 0){
 				Serial.print("There was error while reading data from register ");
 				Serial.print(pregToReadFrom[i]);
@@ -50,7 +50,7 @@ namespace util{
 		int testdata;
 		byte data[2];
 
-		testdata = _pga->readPGA309Register(0x08);
+		testdata = _pga->read(0x08);
 		if (testdata != 0){
 			Serial.print("There was error while reading data from register ");
 			Serial.print(0x08);

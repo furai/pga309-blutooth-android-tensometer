@@ -4,3 +4,4 @@ The purpose of this project is to measure tensions with use of tensometers (stra
 The whole project is WIP.
 ###Current status and TODO
 - [ ] Finish this list... :)
+	- [x] Add sub item

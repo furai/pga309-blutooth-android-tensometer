@@ -38,4 +38,4 @@ The whole project is WIP.
 	- [ ] Calibration
 		- [ ] Accepting basic input and calculating settings basic on it
 		- [ ] Sending calibration data to PGA309
--[ ] Finish this list
+- [ ] Finish this list

@@ -12,7 +12,7 @@
 #define REG2 0xE77B
 #define REG3 0x0500
 #define REG4 0xE700
-#define REG6 0x0600
+#define REG6 0x1200
 #define ADSREG B10001101
 
 PGA309 pga(PGA309ADDR);
@@ -37,10 +37,10 @@ void setup(){
 	//Setting the test pin high enables direct writing of internal registers and stops transactions with External EEPROM
 	pga.enableTestPin();
 	delay(100);
-	eeprom.clear();
-	util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
-	util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
-	delay(1000);
+	// eeprom.clear();
+	// util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	// util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
+	// delay(1000);
 	
 
 
@@ -57,5 +57,5 @@ void loop(){
 	// util::printMenu();
 	util::ReadADSData(&ads, ADSData);
 	// util::ReadErrorREG(&pga);
-	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 }

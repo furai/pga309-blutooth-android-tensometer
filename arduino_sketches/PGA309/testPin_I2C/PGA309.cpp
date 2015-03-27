@@ -112,14 +112,3 @@ void PGA309::getRecData(byte data[]){
 	data[0] = recData[0];
 	data[1] = recData[1];
 }
-
-/*
-	Function: readTempADC
-		Gets received data from the PGA 309.
-	Returns:
-		byte - temperature read from the reg
-*/
-byte readTempADC(){
-	this.read();
-	
-}

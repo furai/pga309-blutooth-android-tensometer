@@ -15,6 +15,11 @@ PGA309::PGA309(){
 	testPinEnabled = false;
 	recData[0] = 0;
 	recData[1] = 0;	
+	reg1 = {0x00, 0x00};
+	reg2 = {0x00, 0x00};
+	reg3 = {0x00, 0x00};
+	reg4 = {0x00, 0x00};
+	reg6 = {0x00, 0x00};
 }
 
 

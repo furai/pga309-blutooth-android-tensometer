@@ -23,6 +23,10 @@ class PGA309
 		int getAddress();
 		void getRecData(byte data[]);
 	private:
+		struct reg_tag{
+			byte lsb;
+			byte msb;
+		} reg1, reg2, reg3, reg4, reg6;
 		PGA309();
 		int _address;
 		bool testPinEnabled;

@@ -5,7 +5,9 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <math.h>
 #include "PGA309.h"
+
 
 /*	
 	Default private constructor. Inaccessible by default.
@@ -116,4 +118,14 @@ int PGA309::getAddress(){
 void PGA309::getRecData(byte data[]){
 	data[0] = recData[0];
 	data[1] = recData[1];
+}
+
+void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/){
+	int _reg1 = 0x0000, _reg2 = 0x0000, _reg3 = 0x0000, _reg4 = 0x0000, reg6 = 0x0000;
+	if(zero_dac != 0){
+		_reg1 = ceil(zero_dac/(v_ref/65536));
+	}
+	if(gain_dac != 0){
+		
+	}
 }

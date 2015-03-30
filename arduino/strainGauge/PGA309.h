@@ -31,6 +31,7 @@ class PGA309
 		int _address;
 		bool testPinEnabled;
 		byte recData[ARRAY_SIZE_PGA];
+		void setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref = 4.096);
 };
 
 #endif

@@ -120,12 +120,37 @@ void PGA309::getRecData(byte data[]){
 	data[1] = recData[1];
 }
 
+/*
+	Function: setRegisters
+		Sets values of internal registers using given parameters.
+	Parameters: 
+		zero_dac - Zero DAC value (float)
+		gain_dac - Gain DAC value (float)
+		coarse_offset - Coarse offset, it will be mostly set to 0 (float)
+		front_pga - Front-end Gain setting (float)
+		out_pga - Output gain setting (float)
+		v_ref - Reference voltage, I'm assuming it's internal one, default value is 4.096V (float)
+*/
 void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/){
-	int _reg1 = 0x0000, _reg2 = 0x0000, _reg3 = 0x0000, _reg4 = 0x0000, reg6 = 0x0000;
+	int tempReg = 0;
 	if(zero_dac != 0){
-		_reg1 = ceil(zero_dac/(v_ref/65536));
+		tempReg = ceil(zero_dac/(v_ref/65536));
+		reg1.lsb = tempReg & 0xFF;
+		reg1.msb = tempReg >> 8;
+		tempReg = 0;
 	}
 	if(gain_dac != 0){
-		
+		tempReg = ceil((gain_dac - 1/3)*(3/2)*65536);
+		this->intToReg(&reg2, tempReg);
+		tempReg = 0;
 	}
+	if(coarse_offset != 0){
+		this->intToReg(&reg2, ceil((gain_dac - 1/3)*(3/2)*65536));
+	}
+
+}
+
+void PGA309::intToReg(reg_tag *preg, int val){
+	preg->lsb = val & 0xFF;
+	preg->msb = val >> 8;
 }

@@ -17,11 +17,11 @@ PGA309::PGA309(){
 	testPinEnabled = false;
 	recData[0] = 0;
 	recData[1] = 0;	
-	reg1 = {0x00, 0x00};
-	reg2 = {0x00, 0x00};
-	reg3 = {0x00, 0x00};
-	reg4 = {0x00, 0x00};
-	reg6 = {0x00, 0x00};
+	reg1 = 0x0000;
+	reg2 = 0x0000;
+	reg3 = 0x0000;
+	reg4 = 0x0000;
+	reg6 = 0x0000;
 }
 
 
@@ -133,24 +133,21 @@ void PGA309::getRecData(byte data[]){
 */
 void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/){
 	int tempReg = 0;
+	int arr_coarse_offset[31];
+
+	for(int i = -14; i <= 14; i++){
+		arr_coarse_offset[i + 14] = i * v_ref * 0.00085;
+	}	
+
 	if(zero_dac != 0){
-		tempReg = ceil(zero_dac/(v_ref/65536));
-		reg1.lsb = tempReg & 0xFF;
-		reg1.msb = tempReg >> 8;
-		tempReg = 0;
+		reg1 = ceil(zero_dac/(v_ref/65536));
 	}
+
 	if(gain_dac != 0){
-		tempReg = ceil((gain_dac - 1/3)*(3/2)*65536);
-		this->intToReg(&reg2, tempReg);
-		tempReg = 0;
+		reg2 = ceil((gain_dac - 1/3)*(3/2)*65536);
 	}
+
 	if(coarse_offset != 0){
-		this->intToReg(&reg2, ceil((gain_dac - 1/3)*(3/2)*65536));
+
 	}
-
-}
-
-void PGA309::intToReg(reg_tag *preg, int val){
-	preg->lsb = val & 0xFF;
-	preg->msb = val >> 8;
 }

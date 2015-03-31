@@ -139,9 +139,35 @@ void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, f
 		arr_coarse_offset[i + 14] = i * v_ref * 0.00085;
 	}	
 
-	if(zero_dac != 0){
-		reg1 = ceil(zero_dac/(v_ref/65536));
+/*
+	Function: calcRegCoarseOffset
+		Calculates settings for the registers.
+	Parameters: 
+		coarse_offset - Coarse offset value (float)
+		v_ref - Reference voltage (float)
+	Returns:
+		Integer - value needed to be written to the register
+*/
+int calcRegCoarseOffset(float coarse_offset, float v_ref){
+	int step = coarse_offset / (v_ref * 0.00085);
+	if(abs(step) > 0){
+		if(abs(step) > 7){
+			if(step > 0){
+				return (step + 1);
+			} else {
+				return ((abs(step) + 1) | B10000);
+			}
+		} else {
+			if(step > 0){
+				return (step);
+			} else {
+				return (abs(step) | B10000);
+			}
+		}
+	} else {
+		return 0;
 	}
+}
 
 	if(gain_dac != 0){
 		reg2 = ceil((gain_dac - 1/3)*(3/2)*65536);

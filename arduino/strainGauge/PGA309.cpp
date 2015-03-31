@@ -148,6 +148,6 @@ void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, f
 	}
 
 	if(coarse_offset != 0){
-
+		//waiting for the answer from Ian, might look into National Instruments VIs
 	}
 }

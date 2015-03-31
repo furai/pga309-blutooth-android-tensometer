@@ -142,7 +142,7 @@ void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, f
 /*
 	Function: calcRegCoarseOffset
 		Calculates settings for the registers.
-	Parameters: 
+	Parameters:
 		coarse_offset - Coarse offset value (float)
 		v_ref - Reference voltage (float)
 	Returns:
@@ -172,7 +172,7 @@ int calcRegCoarseOffset(float coarse_offset, float v_ref){
 /*
 	Function: calcRegFrontPGA
 		Calculates settings for the registers.
-	Parameters: 
+	Parameters:
 		front_pga - value set for front PGA
 	Returns:
 		Integer - value needed to be written to the register
@@ -212,7 +212,7 @@ int calcRegFrontPGA(float front_pga){
 /*
 	Function: calcRegOutPGA
 		Calculates settings for the registers.
-	Parameters: 
+	Parameters:
 		out_pga - value set for out PGA
 	Returns:
 		Integer - value needed to be written to the register

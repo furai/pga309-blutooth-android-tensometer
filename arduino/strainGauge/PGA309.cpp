@@ -209,7 +209,34 @@ int calcRegFrontPGA(float front_pga){
 	}
 }
 
-	if(coarse_offset != 0){
-		//waiting for the answer from Ian, might look into National Instruments VIs
+/*
+	Function: calcRegOutPGA
+		Calculates settings for the registers.
+	Parameters: 
+		out_pga - value set for out PGA
+	Returns:
+		Integer - value needed to be written to the register
+*/
+int calcRegOutPGA(float out_pga){
+	//trick with casting it to in and using switch case won't work in this situation
+	//so I'm going to use if/else instead
+	if(out_pga == 2){
+		return 0;
+	} else if(out_pga == 2.4){
+		return 1;
+	} else if(out_pga == 3){
+		return 2;
+	} else if(out_pga == 3.6){
+		return 3;
+	} else if(out_pga == 4.5){
+		return 4;
+	} else if(out_pga == 6){
+		return 5;
+	} else if(out_pga == 9){
+		return 6;
+	} else if(out_pga == 0 /*Disable internal feedback*/){
+		return 7;
+	} else { //default case
+		return 0;
 	}
 }

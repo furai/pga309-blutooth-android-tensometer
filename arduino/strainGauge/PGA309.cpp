@@ -123,20 +123,31 @@ void PGA309::getRecData(byte data[]){
 /*
 	Function: setRegisters
 		Sets values of internal registers using given parameters.
-	Parameters: 
+	Parameters:
 		zero_dac - Zero DAC value (float)
 		gain_dac - Gain DAC value (float)
 		coarse_offset - Coarse offset, it will be mostly set to 0 (float)
 		front_pga - Front-end Gain setting (float)
 		out_pga - Output gain setting (float)
 		v_ref - Reference voltage, I'm assuming it's internal one, default value is 4.096V (float)
+		continConvMode - Continuous conversion mode enable (bool)
+		intTempMode - Internal temperature mode (bool)
 */
-void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/){
+void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/, bool continConvMode /*= false*/, bool intTempMode /*= true*/){
 	reg1 = ceil(zero_dac/(v_ref/65536));
 	reg2 = ceil((gain_dac - 1/3)*(3/2)*65536);
 	reg4 = calcRegCoarseOffset(coarse_offset, v_ref);
 	reg4 += calcRegFrontPGA(front_pga) << 8;
 	reg4 += calcRegOutPGA(out_pga) << 12;
+	reg6 = 0;
+	
+	if(continConvMode){
+		reg6 += 1 << 10;
+	}
+
+	if(intTempMode){
+		reg6 += 1 << 9;
+	}
 }
 
 /*

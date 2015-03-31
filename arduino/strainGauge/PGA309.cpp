@@ -169,9 +169,45 @@ int calcRegCoarseOffset(float coarse_offset, float v_ref){
 	}
 }
 
-	if(gain_dac != 0){
-		reg2 = ceil((gain_dac - 1/3)*(3/2)*65536);
+/*
+	Function: calcRegFrontPGA
+		Calculates settings for the registers.
+	Parameters: 
+		front_pga - value set for front PGA
+	Returns:
+		Integer - value needed to be written to the register
+*/
+int calcRegFrontPGA(float front_pga){
+	int ifront_pga = (int)front_pga;
+	switch(ifront_pga){
+		case 4:
+			return 0;
+			break;
+		case 8:
+			return 1;
+			break;
+		case 16:
+			return 2;
+			break;
+		case 23:
+			return 3;
+			break;
+		case 32:
+			return 4;
+			break;
+		case 42:
+			return 5;
+			break;
+		case 64:
+			return 6;
+			break;
+		case 128:
+			return 7;
+			break;
+		default:
+			return 0;
 	}
+}
 
 	if(coarse_offset != 0){
 		//waiting for the answer from Ian, might look into National Instruments VIs

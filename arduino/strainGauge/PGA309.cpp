@@ -17,11 +17,9 @@ PGA309::PGA309(){
 	testPinEnabled = false;
 	recData[0] = 0;
 	recData[1] = 0;	
-	reg1 = 0x0000;
-	reg2 = 0x0000;
-	reg3 = 0x0000;
-	reg4 = 0x0000;
-	reg6 = 0x0000;
+	for(int i = 0; i < NUMBER_OF_REGISTERS; i++){
+		_registers[i] = 0;
+	}
 }
 
 
@@ -132,21 +130,36 @@ void PGA309::getRecData(byte data[]){
 		v_ref - Reference voltage, I'm assuming it's internal one, default value is 4.096V (float)
 		continConvMode - Continuous conversion mode enable (bool)
 		intTempMode - Internal temperature mode (bool)
+		VexcEnable - Enable Vexc (bool)
+		intVrefSelect - Select value of Vref, fasle - 4.096V, true - 2.5V (bool)
+		intVrefEnable - Enable Vref (bool)
 */
-void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga, float v_ref /*= 4.096*/, bool continConvMode /*= false*/, bool intTempMode /*= true*/){
-	reg1 = ceil(zero_dac/(v_ref/65536));
-	reg2 = ceil((gain_dac - 1/3)*(3/2)*65536);
-	reg4 = calcRegCoarseOffset(coarse_offset, v_ref);
-	reg4 += calcRegFrontPGA(front_pga) << 8;
-	reg4 += calcRegOutPGA(out_pga) << 12;
-	reg6 = 0;
+void PGA309::setRegisters(	float zero_dac, float gain_dac, float coarse_offset, float front_pga, float out_pga,
+ 							float v_ref /*= 4.096*/, bool continConvMode /*= false*/, bool intTempMode /*= true*/,
+ 							bool VexcEnable /*= true*/, bool intVrefSelect /*= false*/, bool intVrefEnable /*= true*/){
+	_registers[0] = ceil(zero_dac/(v_ref/65536));
+	_registers[1] = ceil((gain_dac - 1/3)*(3/2)*65536);
+	_registers[2] = 0;
+	if(VexcEnable){
+		_registers[2] += 1 << 10;
+	}
+	if(intVrefSelect){
+		_registers[2] += 1 << 9;
+	}
+	if(intVrefEnable){
+		_registers[2] += 1 << 8;
+	}
+	_registers[3] = calcRegCoarseOffset(coarse_offset, v_ref);
+	_registers[3] += calcRegFrontPGA(front_pga) << 8;
+	_registers[3] += calcRegOutPGA(out_pga) << 12;
+	_registers[5] = 0;
 	
 	if(continConvMode){
-		reg6 += 1 << 10;
+		_registers[5] += 1 << 10;
 	}
 
 	if(intTempMode){
-		reg6 += 1 << 9;
+		_registers[5] += 1 << 9;
 	}
 }
 
@@ -159,7 +172,7 @@ void PGA309::setRegisters(float zero_dac, float gain_dac, float coarse_offset, f
 	Returns:
 		Integer - value needed to be written to the register
 */
-int calcRegCoarseOffset(float coarse_offset, float v_ref){
+int PGA309::calcRegCoarseOffset(float coarse_offset, float v_ref){
 	int step = coarse_offset / (v_ref * 0.00085);
 	if(abs(step) > 0){
 		if(abs(step) > 7){
@@ -188,7 +201,7 @@ int calcRegCoarseOffset(float coarse_offset, float v_ref){
 	Returns:
 		Integer - value needed to be written to the register
 */
-int calcRegFrontPGA(float front_pga){
+int PGA309::calcRegFrontPGA(float front_pga){
 	int ifront_pga = (int)front_pga;
 	switch(ifront_pga){
 		case 4:
@@ -228,7 +241,7 @@ int calcRegFrontPGA(float front_pga){
 	Returns:
 		Integer - value needed to be written to the register
 */
-int calcRegOutPGA(float out_pga){
+int PGA309::calcRegOutPGA(float out_pga){
 	//trick with casting it to in and using switch case won't work in this situation
 	//so I'm going to use if/else instead
 	if(out_pga == 2){
@@ -249,5 +262,12 @@ int calcRegOutPGA(float out_pga){
 		return 7;
 	} else { //default case
 		return 0;
+	}
+}
+
+int PGA309::writeRegisters(){
+	for(int i = 0; i < NUMBER_OF_REGISTERS; i++){
+		this->write(i+1, _registers[i]);
+		delay(5);
 	}
 }

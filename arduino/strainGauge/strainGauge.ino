@@ -38,6 +38,8 @@ void setup(){
 	pga.enableTestPin();
 	delay(100);
 	// eeprom.clear();
+	pga.setRegisters(0.060353, 0.936138, 0.0, 128, 9);
+	pga.writeRegisters();
 	// util::WriteToMultiEEPROM(&eeprom, memData, memToWriteToReadFrom,  (sizeof(memToWriteToReadFrom)/sizeof(int)));
 	// util::ReadFromMultEEPROM(&eeprom, memToWriteToReadFrom, (sizeof(memToWriteToReadFrom)/sizeof(int)));
 	// delay(1000);
@@ -49,13 +51,14 @@ void setup(){
 	Serial.print("Status of writing to the ADS internal register:");
 	Serial.println(ads.write(ADSREG));
 	delay(100);
-	pga.disableTestPin();
-	delay(100);
+	// pga.disableTestPin();
+	// delay(100);
+	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 }
 
 void loop(){
 	// util::printMenu();
-	util::ReadADSData(&ads, ADSData);
+	// util::ReadADSData(&ads, ADSData);
 	// util::ReadErrorREG(&pga);
 	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 }

@@ -28,7 +28,7 @@ int regToWriteTo[] = {0x01, 0x02};
 byte ADSData[3];
 int memData[] = {0x5449, 0x0000, 0x0000, REG3, REG4, 0x0000, REG6, (0xFFFF-((0x5449+REG3+REG4+REG6)&0xFFFF)), 0x0280, REG1, REG2, 0x7FFF, 0x0000, (0xFFFF-((0x0280+REG1+REG2+0x7FFF)&0xFFFF))};
 int memToWriteToReadFrom[] = {0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0E, 0x10, 0x12, 0x14, 0x16, 0x18, 0x1A};
-
+unsigned int sumAvg;
 void setup(){
 	Serial.begin(19200);
 	Wire.begin();
@@ -52,13 +52,17 @@ void setup(){
 	Serial.println(ads.write(ADSREG));
 	delay(100);
 	pga.disableTestPin();
-	delay(100);
+	delay(2000);
 	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
 }
 
 void loop(){
 	// util::printMenu();
-	util::ReadADSData(&ads, ADSData);
+	
 	// util::ReadErrorREG(&pga);
-	util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	// util::ReadFromMultRegisters(&pga, regToReadFrom, (sizeof(regToReadFrom)/sizeof(int)));
+	sumAvg = 0;
+	for(int i = 0; i < 10; i++)
+		sumAvg += (util::ReadADSData(&ads, ADSData))/10;
+	Serial.println(sumAvg);
 }

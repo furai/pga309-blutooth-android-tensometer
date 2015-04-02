@@ -11,7 +11,7 @@
 namespace util{
 	void WriteToMultiRegisters(PGA309* _pga, int pregData[], int pregToWriteTo[], int size);
 	void ReadFromMultRegisters(PGA309* _pga, int pregToReadFrom[], int size);
-	void ReadADSData(ADS1110* _ads, byte data[]);
+	int ReadADSData(ADS1110* _ads, byte data[]);
 	void ReadErrorREG(PGA309* _pga);
 	void printMenu();
 	String binaryFormat(int n, int numOfPlaces);

@@ -70,11 +70,12 @@ namespace util{
 		delay(5);
 	}
 
-	void ReadADSData(ADS1110* _ads, byte data[]){
+	int ReadADSData(ADS1110* _ads, byte data[]){
 		_ads->read();
 		_ads->getRecData(data);
-		Serial.println((data[0] * 256) + data[1]);
-		delay(200);
+		delay(100);
+		return ((data[0] << 8) + data[1]);
+		
 	}
 
 	void printMenu(){
